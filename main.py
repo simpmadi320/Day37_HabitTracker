@@ -17,8 +17,10 @@ user_params = {
 
 graph_endpoint = f"{pixela_endpoint}/{USERNAME}/graphs"
 
+GRAPH_ID = "graph1"
+
 graph_config = {
-    "id": "graph1",
+    "id": GRAPH_ID,
     "name": "Pokemon Km Graph",
     "unit": "Km",
     "type": "float",
@@ -28,5 +30,16 @@ graph_config = {
 headers = {
     "X-USER-TOKEN": TOKEN
 }
-response = requests.post(url=graph_endpoint, json=graph_config, headers=headers)
+#response = requests.post(url=graph_endpoint, json=graph_config, headers=headers)
+#print(response.text)
+
+add_endpoint = f"{pixela_endpoint}/{USERNAME}/graphs/{GRAPH_ID}"
+
+add_points = {
+    "date": "20240309",
+    "quantity": "1.0"
+}
+
+
+response = requests.post(url=add_endpoint, json=add_points, headers=headers)
 print(response.text)
