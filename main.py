@@ -1,4 +1,5 @@
 import requests
+from datetime import datetime
 
 pixela_endpoint = "https://pixe.la/v1/users"
 
@@ -35,11 +36,27 @@ headers = {
 
 add_endpoint = f"{pixela_endpoint}/{USERNAME}/graphs/{GRAPH_ID}"
 
+DATE = datetime.now().strftime("%Y%m%d")
+
 add_points = {
-    "date": "20240309",
+    "date": DATE,
     "quantity": "1.0"
 }
 
 
-response = requests.post(url=add_endpoint, json=add_points, headers=headers)
+#response = requests.post(url=add_endpoint, json=add_points, headers=headers)
+#print(response.text)
+
+update_endpoint = f"{pixela_endpoint}/{USERNAME}/graphs/{GRAPH_ID}/{DATE}"
+
+new_pixel_data = {
+    "quantity": "4.5"
+}
+
+#response = requests.put(url=update_endpoint, json=new_pixel_data, headers=headers)
+#print(response.text)
+
+delete_endpoint = f"{pixela_endpoint}/{USERNAME}/graphs/{GRAPH_ID}/{DATE}"
+
+response = requests.delete(url=update_endpoint, headers=headers)
 print(response.text)
